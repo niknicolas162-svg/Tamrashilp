@@ -216,11 +216,11 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href="mailto:concierge@tamrasshilp.in"
+                  href="mailto:tamrashilpstore@gmail.com"
                   className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-[#FAF4E8] transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[#8C4E28] shrink-0" />
-                  <span>concierge@tamrasshilp.in</span>
+                  <span>tamrashilpstore@gmail.com</span>
                 </a>
 
                 <div className="flex items-start gap-2.5 p-2 rounded-lg">

@@ -70,6 +70,8 @@ export default function RootLayout({
     priceRange: '₹1299 - ₹4899',
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, Credit Card, UPI, NetBanking',
+    telephone: '+919557057767',
+    email: 'tamrashilpstore@gmail.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Tamta Mohalla',

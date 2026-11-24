@@ -140,7 +140,7 @@ export default function CollectionsPage() {
               <label className="text-[#2A1A12]/80 uppercase tracking-wider text-[10px]">WhatsApp / Phone</label>
               <input
                 type="tel"
-                placeholder="+91 94120 XXXXX"
+                placeholder="+91 95570 XXXXX"
                 className="w-full px-3.5 py-2.5 rounded-xl bg-[#EFE4CF]/60 border border-[#B8964F]/40 focus:outline-none focus:border-[#8C4E28] text-xs font-sans"
                 required
               />

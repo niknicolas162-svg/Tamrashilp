@@ -194,7 +194,7 @@ export default function KalaiServicePage() {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+91 94120 XXXXX"
+                    placeholder="+91 95570 XXXXX"
                     className="w-full px-4 py-2.5 rounded-xl bg-[#FAF4E8] border border-[#B8964F]/40 focus:outline-none focus:border-[#8C4E28] font-sans"
                     required
                   />

@@ -40,7 +40,7 @@ const DEMO_USERS: Record<UserRole, AuthUser> = {
     id: 'artisan-1',
     name: 'Devendra Kumar Tamta',
     email: 'devendra@tamrashilp.in',
-    phone: '+91 94120 54321',
+    phone: '+91 95570 57767',
     role: 'SELLER',
     avatarStyle: 'hammer',
     artisanWorkshopName: 'Shree Tamreshwar Shilp Kendra, Almora',

@@ -231,7 +231,7 @@ function LoginContent() {
                       type="tel"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
-                      placeholder="94120 XXXXX"
+                      placeholder="95570 XXXXX"
                       disabled={otpSent}
                       className="w-full pl-12 pr-4 py-2.5 text-base sm:text-sm bg-[#EFE4CF]/60 border border-[#B8964F]/50 rounded-xl focus:outline-none focus:border-[#8C4E28] text-[#2A1A12] font-mono disabled:opacity-60"
                       required

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Hammer, Award, ShieldCheck, MapPin, Volume2, VolumeX, MessageSquare, RefreshCw, Instagram } from 'lucide-react';
+import { Hammer, Award, ShieldCheck, MapPin, Volume2, VolumeX, MessageSquare, RefreshCw, Instagram, Mail, Phone } from 'lucide-react';
 import { useLanguage } from '@/lib/language-context';
 import { buildWhatsAppClickUrl, getPreFilledMessage } from '@/lib/whatsapp/config';
 
@@ -184,6 +184,24 @@ export const Footer: React.FC = () => {
                 <Link href="/terms" className="hover:text-ivory transition-colors">
                   The Guild Charter & Terms
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="mailto:tamrashilpstore@gmail.com"
+                  className="flex items-center gap-1.5 text-parchment-300 hover:text-ivory transition-colors pt-1"
+                >
+                  <Mail className="w-3.5 h-3.5 text-brass-400" />
+                  <span>tamrashilpstore@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+919557057767"
+                  className="flex items-center gap-1.5 text-parchment-300 hover:text-ivory transition-colors pt-0.5"
+                >
+                  <Phone className="w-3.5 h-3.5 text-brass-400" />
+                  <span>+91 95570 57767</span>
+                </a>
               </li>
               <li>
                 <a
