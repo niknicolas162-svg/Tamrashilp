@@ -98,16 +98,14 @@ export default function ContactPage() {
 
               {/* Online/Offline Status Pill based on IST Support Hours */}
               <div
-                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-serif tracking-wide border ${
-                  supportStatus.isOnline
-                    ? 'bg-[#4E6E58]/15 border-[#4E6E58] text-[#4E6E58]'
-                    : 'bg-[#B8964F]/15 border-[#B8964F] text-[#8C4E28]'
-                }`}
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-serif tracking-wide border ${supportStatus.isOnline
+                  ? 'bg-[#4E6E58]/15 border-[#4E6E58] text-[#4E6E58]'
+                  : 'bg-[#B8964F]/15 border-[#B8964F] text-[#8C4E28]'
+                  }`}
               >
                 <span
-                  className={`w-2 h-2 rounded-full ${
-                    supportStatus.isOnline ? 'bg-[#4E6E58]' : 'bg-[#B8964F]'
-                  }`}
+                  className={`w-2 h-2 rounded-full ${supportStatus.isOnline ? 'bg-[#4E6E58]' : 'bg-[#B8964F]'
+                    }`}
                 />
                 <span className="font-medium">
                   {supportStatus.isOnline ? 'Online now' : 'We reply during support hours'}
@@ -218,11 +216,11 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href="mailto:concierge@tamrashilp.in"
+                  href="mailto:concierge@tamrasshilp.in"
                   className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-[#FAF4E8] transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[#8C4E28] shrink-0" />
-                  <span>concierge@tamrashilp.in</span>
+                  <span>concierge@tamrasshilp.in</span>
                 </a>
 
                 <div className="flex items-start gap-2.5 p-2 rounded-lg">
