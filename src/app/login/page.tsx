@@ -8,7 +8,7 @@ import { useAuth } from '@/lib/auth-context';
 import { useLanguage } from '@/lib/language-context';
 import { AvatarIcon, AVATAR_OPTIONS, AvatarStyle } from '@/components/common/AvatarIcon';
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect') || '/profile';
@@ -428,6 +428,20 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="min-h-screen bg-[#FAF4E8] flex items-center justify-center font-serif text-sm text-[#8C4E28]">
+          Opening Patron Sanctuary…
+        </div>
+      }
+    >
+      <LoginContent />
+    </React.Suspense>
   );
 }
 
