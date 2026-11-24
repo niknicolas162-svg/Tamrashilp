@@ -45,7 +45,7 @@ export default function CustomOrderPage() {
             <span className="text-brass-600 text-xs">✦</span>
           </div>
           <p className="text-xs sm:text-sm text-walnut-800 max-w-lg mx-auto leading-relaxed">
-            Have an ancestral family crest, personalized Sanskrit mantra, or bespoke architectural copperware requirement? Our Almora master coppersmiths forge commissioned pieces to your exact specifications.
+            Have an ancestral family crest, personalized Sanskrit mantra, or bespoke architectural copperware requirement? Master coppersmith Devendra Kumar Tamta hand-forges commissioned pieces to your exact specifications.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export default function CustomOrderPage() {
               Every Stroke Driven by Hand
             </h3>
             <p className="text-xs sm:text-sm text-[#4A3223] font-light leading-relaxed font-body">
-              Unlike commercial laser etching that merely scratches the surface, our artisans use hardened steel punches and iron anvils to raise and gouge heraldic relief directly into the heavy copper bullion.
+              Unlike commercial laser etching that merely scratches the surface, master craftsman Devendra Kumar Tamta uses hardened steel punches and iron anvils to raise and deboss heraldic relief directly into the heavy copper bullion.
             </p>
             <div className="pt-2 text-[11px] text-[#8C4E28] font-sans uppercase tracking-wider">
               ✦ Almora Guild Guaranteed • 99.2%+ Virgin Copper

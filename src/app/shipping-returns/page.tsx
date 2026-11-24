@@ -23,7 +23,7 @@ export default function ShippingReturnsPage() {
           </div>
 
           <p className="text-xs sm:text-sm text-[#5C3E2C] font-light leading-relaxed">
-            Dispatch protocols from our artisan collective hub in Almora and Bageshwar, Uttarakhand.
+            Dispatch protocols from the Shree Tamreshwar atelier of master coppersmith Devendra Kumar Tamta in Almora, Uttarakhand.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export default function ShippingReturnsPage() {
               1. Shipping Logistics & Dispatch Timelines
             </h2>
             <p className="font-light">
-              All Tamrashilp orders originate from our master smith workshops in Almora or Bageshwar. Each utensil is thoroughly hand-buffed with tamarind, inspected against structural flaws, and secured inside reinforced honeycomb paper cushioning.
+              All Tamrashilp vessels originate from the workshop of master coppersmith Devendra Kumar Tamta in Tamta Mohalla, Almora. Each utensil is thoroughly hand-buffed with tamarind, inspected against structural flaws, and secured inside reinforced honeycomb paper cushioning.
             </p>
             <ul className="space-y-2 pt-2">
               <li className="flex items-start gap-2">

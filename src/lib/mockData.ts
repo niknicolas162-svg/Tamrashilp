@@ -668,7 +668,7 @@ Today, automated aluminum stamping and plastic bottles threaten this ancestral w
     excerptHi: 'नींबू, सेंधा नमक और इमली के घरेलू नुस्खे, जो कुछ ही सेकंड में तांबे को नए जैसा चमका देते हैं।',
     coverImage: '/images/tamta/product-02.jpg',
     author: 'Devendra Kumar Tamta',
-    authorRole: 'Master Engraver, Bageshwar',
+    authorRole: 'Sole Master Craftsman, Almora Atelier',
     category: 'Atelier Care Protocol',
     readTime: '4 min read',
     date: 'Nov 05, 2026',

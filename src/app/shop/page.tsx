@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, Suspense } from 'react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import {
   SlidersHorizontal,
@@ -44,7 +45,11 @@ function ShopContent() {
         const matchesCategory = p.categoryName.toLowerCase().includes(q);
         if (!matchesTitle && !matchesArtisan && !matchesCategory) return false;
       }
-      if (selectedCategory && p.categoryId !== selectedCategory) return false;
+      if (selectedCategory) {
+        const matchCat = CATEGORIES.find((c) => c.id === selectedCategory || c.slug === selectedCategory);
+        const targetId = matchCat ? matchCat.id : selectedCategory;
+        if (p.categoryId !== targetId) return false;
+      }
       if (selectedFinish && p.finish !== selectedFinish) return false;
       if (selectedArtisan && p.artisanId !== selectedArtisan) return false;
       if (p.basePrice > priceMax) return false;
@@ -234,33 +239,25 @@ function ShopContent() {
               </div>
             </div>
 
-            {/* Master Craftsman */}
+            {/* Master Craftsman Provenance Badge */}
             <div className="space-y-2 pt-3 border-t border-brass-600/20">
               <label className="text-[10px] font-sans font-bold uppercase tracking-widest text-brass-800 block">
-                {t('filterArtisan')}
+                The Master Craftsman
               </label>
-              <div className="space-y-1 text-xs">
-                <button
-                  onClick={() => setSelectedArtisan('')}
-                  className={`w-full text-left px-2.5 py-1.5 rounded-lg ${!selectedArtisan
-                    ? 'bg-patina-800 text-ivory font-bold'
-                    : 'text-walnut-800 hover:bg-parchment-200'
-                    }`}
+              <div className="p-3 rounded-xl bg-parchment-200/70 border border-brass-600/30 text-xs space-y-1.5">
+                <div className="font-serif font-bold text-walnut-950 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-copper-600" />
+                  <span>Devendra Kumar Tamta</span>
+                </div>
+                <p className="text-[11px] text-walnut-700 leading-relaxed font-body">
+                  Sole master coppersmith. Every piece is hand-hammered in Almora, Uttarakhand.
+                </p>
+                <Link
+                  href="/master-craftsman"
+                  className="text-[11px] text-copper-700 hover:text-copper-900 font-serif font-semibold inline-flex items-center gap-1 underline pt-0.5"
                 >
-                  All Master Craftsmen
-                </button>
-                {ARTISANS.map((artisan) => (
-                  <button
-                    key={artisan.id}
-                    onClick={() => setSelectedArtisan(artisan.id)}
-                    className={`w-full text-left px-2.5 py-1.5 rounded-lg truncate ${selectedArtisan === artisan.id
-                      ? 'bg-patina-800 text-ivory font-bold'
-                      : 'text-walnut-800 hover:bg-parchment-200'
-                      }`}
-                  >
-                    {artisan.name} ({artisan.village?.split(',')[1] || 'Almora'})
-                  </button>
-                ))}
+                  Read atelier story →
+                </Link>
               </div>
             </div>
 
@@ -422,35 +419,26 @@ function ShopContent() {
                     </div>
                   </div>
 
-                  {/* Artisan */}
+                  {/* Master Craftsman Provenance Badge */}
                   <div className="space-y-2 pt-3 border-t border-brass-600/20">
                     <label className="text-[10px] font-sans font-bold uppercase tracking-widest text-brass-800 block">
-                      {t('filterArtisan')}
+                      The Master Craftsman
                     </label>
-                    <div className="space-y-1">
-                      <button
-                        onClick={() => setSelectedArtisan('')}
-                        className={`w-full text-left px-3 py-2 rounded-lg ${
-                          !selectedArtisan
-                            ? 'bg-patina-800 text-ivory font-bold'
-                            : 'bg-parchment-100 text-walnut-800'
-                        }`}
+                    <div className="p-3 rounded-xl bg-parchment-200/80 border border-brass-600/30 text-xs space-y-1.5">
+                      <div className="font-serif font-bold text-walnut-950 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-copper-600" />
+                        <span>Devendra Kumar Tamta</span>
+                      </div>
+                      <p className="text-[11px] text-walnut-700 leading-relaxed font-body">
+                        Sole master coppersmith of the atelier. Hand-hammered in Almora.
+                      </p>
+                      <Link
+                        href="/master-craftsman"
+                        onClick={() => setIsMobileFilterOpen(false)}
+                        className="text-[11px] text-copper-700 hover:text-copper-900 font-serif font-semibold inline-flex items-center gap-1 underline pt-0.5"
                       >
-                        All Craftsmen
-                      </button>
-                      {ARTISANS.map((artisan) => (
-                        <button
-                          key={artisan.id}
-                          onClick={() => setSelectedArtisan(artisan.id)}
-                          className={`w-full text-left px-3 py-2 rounded-lg truncate ${
-                            selectedArtisan === artisan.id
-                              ? 'bg-patina-800 text-ivory font-bold'
-                              : 'bg-parchment-100 text-walnut-800'
-                          }`}
-                        >
-                          {artisan.name}
-                        </button>
-                      ))}
+                        Read atelier story →
+                      </Link>
                     </div>
                   </div>
 

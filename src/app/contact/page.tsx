@@ -205,14 +205,14 @@ export default function ContactPage() {
 
               <div className="space-y-2">
                 <a
-                  href="https://instagram.com/tamrashilp"
+                  href="https://instagram.com/tamrasshilp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-[#FAF4E8] transition-colors group"
                 >
                   <Instagram className="w-4 h-4 text-[#8C4E28] shrink-0 group-hover:scale-110 transition-transform" />
                   <div className="flex flex-col">
-                    <span className="font-serif font-medium text-xs text-[#12302B]">@tamrashilp</span>
+                    <span className="font-serif font-medium text-xs text-[#12302B]">@tamrasshilp</span>
                     <span className="text-[10px] text-[#2A1A12]/60">Follow our atelier on Instagram</span>
                   </div>
                 </a>
