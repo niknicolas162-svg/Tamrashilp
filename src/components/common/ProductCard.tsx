@@ -67,13 +67,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
 
       {/* Action floating buttons */}
-      <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5 opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
         <button
           onClick={(e) => {
             e.preventDefault();
             toggleWishlist(product);
           }}
-          className={`p-2 rounded-full shadow-md backdrop-blur-md transition-all ${
+          aria-label={inWish ? 'Remove from Wishlist' : 'Save to Patron Folio'}
+          className={`p-2 rounded-full shadow-md backdrop-blur-md transition-all min-w-[34px] min-h-[34px] flex items-center justify-center ${
             inWish
               ? 'bg-patina-950 text-copper-400 border border-copper-500'
               : 'bg-patina-950/80 text-brass-400 hover:text-ivory border border-brass-600/40'
@@ -85,7 +86,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         <button
           onClick={handleCompareToggle}
-          className={`p-2 rounded-full shadow-md backdrop-blur-md transition-all ${
+          aria-label={inComp ? 'Remove from comparison' : 'Compare vessels side by side'}
+          className={`p-2 rounded-full shadow-md backdrop-blur-md transition-all min-w-[34px] min-h-[34px] flex items-center justify-center ${
             inComp
               ? 'bg-patina-950 text-copper-400 border border-copper-500 font-bold'
               : 'bg-patina-950/80 text-brass-400 hover:text-ivory border border-brass-600/40'
@@ -101,7 +103,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.preventDefault();
               onOpenQR(product);
             }}
-            className="p-2 rounded-full shadow-md backdrop-blur-md bg-patina-950/80 text-brass-400 hover:text-ivory border border-brass-600/40 transition-all"
+            aria-label="Inspect Numbered Provenance Certificate"
+            className="p-2 rounded-full shadow-md backdrop-blur-md bg-patina-950/80 text-brass-400 hover:text-ivory border border-brass-600/40 transition-all min-w-[34px] min-h-[34px] flex items-center justify-center"
             title="Inspect Numbered Provenance Certificate"
           >
             <QrCode className="w-3.5 h-3.5" />
@@ -128,6 +131,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             } sepia-[0.12] contrast-[1.03]`}
           />
         )}
+        <div className="hidden sm:flex items-center justify-between absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-patina-950/80 via-patina-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <span className="text-[10px] font-serif text-parchment-200 tracking-wider uppercase">
+            {product.stock > 0 ? '● Ready to Ship' : `● Made in ${product.makingTimeDays}d`}
+          </span>
+          <span className="text-[10px] font-sans uppercase tracking-widest text-brass-300 font-medium">
+            Inspect Piece →
+          </span>
+        </div>
       </Link>
 
       {/* Card Body styled like Museum Plaque */}
@@ -163,7 +174,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Pricing & Acquisition */}
         <div className="pt-2.5 sm:pt-3 border-t border-brass-600/20 flex items-center justify-between gap-2">
           <div>
-            <div className="flex items-baseline space-x-1.5 sm:space-x-2">
+            <div className="flex items-baseline space-x-1.5 sm:space-x-2 tabular-nums">
               <span className="text-base sm:text-lg font-serif font-bold text-copper-600">
                 ₹{product.basePrice.toLocaleString('en-IN')}
               </span>

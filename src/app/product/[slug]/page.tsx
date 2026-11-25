@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
@@ -19,6 +19,10 @@ import {
   Clock,
   Flame,
   MessageCircle,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  X,
 } from 'lucide-react';
 import { PRODUCTS, PINCODES } from '@/lib/mockData';
 import { buildWhatsAppClickUrl, getPreFilledMessage } from '@/lib/whatsapp/config';
@@ -55,6 +59,18 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
   const [justAdded, setJustAdded] = useState(false);
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLightboxOpen(false);
+      if (e.key === 'ArrowRight') setActiveImageIndex((i) => (i + 1) % product.images.length);
+      if (e.key === 'ArrowLeft') setActiveImageIndex((i) => (i - 1 + product.images.length) % product.images.length);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isLightboxOpen, product.images.length]);
 
   // Pincode transit check
   const [pincodeInput, setPincodeInput] = useState('');
@@ -187,12 +203,40 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Gallery with Macro Detail */}
           <div className="lg:col-span-7 space-y-5">
-            <div className="relative aspect-square sm:aspect-4/3 rounded-2xl overflow-hidden museum-plaque bg-patina-950 candle-vignette">
+            <div className="group relative aspect-square sm:aspect-4/3 rounded-2xl overflow-hidden museum-plaque bg-patina-950 candle-vignette">
               <img
                 src={product.images[activeImageIndex]}
                 alt={product.title}
-                className="w-full h-full object-cover object-center sepia-[0.12] contrast-[1.03] transition-transform duration-700 hover:scale-105"
+                onClick={() => setIsLightboxOpen(true)}
+                className="w-full h-full object-cover object-center sepia-[0.12] contrast-[1.03] transition-transform duration-700 hover:scale-105 cursor-zoom-in"
               />
+
+              {product.images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveImageIndex((i) => (i - 1 + product.images.length) % product.images.length);
+                    }}
+                    aria-label="Previous image"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-patina-950/75 text-parchment-200 hover:text-ivory border border-brass-500/40 opacity-85 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity shadow-md"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveImageIndex((i) => (i + 1) % product.images.length);
+                    }}
+                    aria-label="Next image"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-patina-950/75 text-parchment-200 hover:text-ivory border border-brass-500/40 opacity-85 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity shadow-md"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </>
+              )}
 
               {product.videoUrl && (
                 <button
@@ -204,13 +248,24 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 </button>
               )}
 
-              <button
-                onClick={() => setIsQRModalOpen(true)}
-                className="absolute top-4 right-4 bg-patina-950/85 text-brass-400 hover:text-ivory p-2.5 rounded-full border border-brass-500/40 shadow transition-all"
-                title="Inspect Numbered Provenance Certificate"
-              >
-                <QrCode className="w-4 h-4" />
-              </button>
+              <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+                <button
+                  onClick={() => setIsLightboxOpen(true)}
+                  className="bg-patina-950/85 text-brass-400 hover:text-ivory p-2.5 rounded-full border border-brass-500/40 shadow transition-all"
+                  title="Inspect High-Resolution Detail"
+                  aria-label="Inspect High-Resolution Detail"
+                >
+                  <Maximize2 className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setIsQRModalOpen(true)}
+                  className="bg-patina-950/85 text-brass-400 hover:text-ivory p-2.5 rounded-full border border-brass-500/40 shadow transition-all"
+                  title="Inspect Numbered Provenance Certificate"
+                  aria-label="Inspect Numbered Provenance Certificate"
+                >
+                  <QrCode className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Thumbnail Strip with Hammer Detail Close-up */}
@@ -750,6 +805,59 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               <div className="p-4 bg-patina-950 text-ivory font-serif">
                 <p className="text-xs font-bold">{product.title}</p>
                 <p className="text-[11px] text-brass-400 font-body">Anvil shaping by {settings.artisan_name}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* High-Resolution Image Lightbox Modal */}
+        {isLightboxOpen && (
+          <div
+            onClick={() => setIsLightboxOpen(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-patina-950/95 backdrop-blur-md animate-fadeIn"
+          >
+            <button
+              onClick={() => setIsLightboxOpen(false)}
+              aria-label="Close lightbox"
+              className="absolute top-5 right-5 z-20 p-2.5 rounded-full bg-patina-900 text-ivory hover:text-brass-300 border border-brass-500/40 shadow-lg transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full flex flex-col items-center gap-4 animate-scaleIn"
+            >
+              <div className="relative w-full max-h-[78vh] aspect-4/3 rounded-2xl overflow-hidden border border-brass-500/50 bg-patina-900 shadow-2xl">
+                <img
+                  src={product.images[activeImageIndex]}
+                  alt={product.title}
+                  className="w-full h-full object-contain bg-patina-950"
+                />
+                {product.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => setActiveImageIndex((i) => (i - 1 + product.images.length) % product.images.length)}
+                      aria-label="Previous image"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-patina-950/85 text-ivory hover:text-brass-300 border border-brass-500/40 shadow-lg"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => setActiveImageIndex((i) => (i + 1) % product.images.length)}
+                      aria-label="Next image"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-patina-950/85 text-ivory hover:text-brass-300 border border-brass-500/40 shadow-lg"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
+              </div>
+              <div className="text-center font-serif">
+                <p className="text-sm text-ivory">{language === 'hi' ? product.titleHi : product.title}</p>
+                <p className="text-[11px] text-brass-400">
+                  Image {activeImageIndex + 1} of {product.images.length} • Handcrafted by {settings.artisan_name}
+                </p>
               </div>
             </div>
           </div>

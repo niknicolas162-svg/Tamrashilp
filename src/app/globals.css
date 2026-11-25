@@ -52,6 +52,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  background-color: #8C4E28;
+  color: #FAF4E8;
+}
+
+:focus-visible {
+  outline: 2px solid #B8964F;
+  outline-offset: 2px;
+}
+
 /* Subtle aged paper / parchment tactile texture */
 .bg-parchment-texture {
   background-color: #EFE4CF;
@@ -210,8 +220,11 @@ body {
 .btn-atelier:hover {
   background-color: #753B18;
   border-color: #572E15;
-  box-shadow: 0 4px 12px rgba(140, 78, 40, 0.25);
+  box-shadow: 0 6px 16px rgba(140, 78, 40, 0.28);
   transform: translateY(-1px);
+}
+.btn-atelier:active {
+  transform: scale(0.98);
 }
 
 /* Subdued secondary button with high contrast */
@@ -295,4 +308,47 @@ html, body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

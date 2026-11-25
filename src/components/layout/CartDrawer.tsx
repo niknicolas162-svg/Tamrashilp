@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { X, Trash2, Gift, ArrowRight, ShieldCheck, Tag } from 'lucide-react';
+import { X, Trash2, Gift, ArrowRight, ShieldCheck, Tag, Truck } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { useLanguage } from '@/lib/language-context';
 
@@ -31,7 +31,20 @@ export const CartDrawer: React.FC = () => {
   const [couponCode, setCouponCode] = useState('');
   const [couponFeedback, setCouponFeedback] = useState<{ success: boolean; message: string } | null>(null);
 
+  useEffect(() => {
+    if (!isCartOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsCartOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isCartOpen, setIsCartOpen]);
+
   if (!isCartOpen) return null;
+
+  const freeShippingThreshold = 1999;
+  const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+  const shippingProgress = Math.min(100, (subtotal / freeShippingThreshold) * 100);
 
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +65,7 @@ export const CartDrawer: React.FC = () => {
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
-        <div className="w-screen max-w-full sm:max-w-md bg-parchment-200 border-l border-brass-600/40 shadow-2xl flex flex-col text-walnut-900">
+        <div className="w-screen max-w-full sm:max-w-md bg-parchment-200 border-l border-brass-600/40 shadow-2xl flex flex-col text-walnut-900 animate-slideInRight">
           {/* Header */}
           <div className="p-5 bg-parchment-300 border-b border-brass-600/30 flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
@@ -63,11 +76,40 @@ export const CartDrawer: React.FC = () => {
             </div>
             <button
               onClick={() => setIsCartOpen(false)}
-              className="p-1 rounded-full text-walnut-800 hover:text-copper-700 transition-colors"
+              aria-label="Close cart drawer"
+              className="p-1.5 rounded-full text-walnut-800 hover:text-copper-700 hover:bg-parchment-200 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
+
+          {/* Complimentary Insured Delivery Progress */}
+          {cart.length > 0 && (
+            <div className="px-5 py-3 bg-[#FAF4E8] border-b border-brass-600/20 space-y-1.5">
+              <div className="flex items-center justify-between text-[11px] font-serif">
+                <span className="flex items-center gap-1.5 text-patina-900 font-medium">
+                  <Truck className="w-3.5 h-3.5 text-copper-700 shrink-0" />
+                  {remainingForFreeShipping > 0 ? (
+                    <span>
+                      Add <strong className="text-copper-700 tabular-nums">₹{remainingForFreeShipping.toLocaleString('en-IN')}</strong> for complimentary insured delivery
+                    </span>
+                  ) : (
+                    <span className="text-[#4E6E58] font-semibold">
+                      ✦ Complimentary Insured BlueDart Air Delivery Unlocked
+                    </span>
+                  )}
+                </span>
+              </div>
+              <div className="h-1.5 w-full bg-parchment-300 rounded-full overflow-hidden">
+                <div
+                  className={`h-full transition-all duration-500 rounded-full ${
+                    remainingForFreeShipping === 0 ? 'bg-[#4E6E58]' : 'bg-[#8C4E28]'
+                  }`}
+                  style={{ width: `${shippingProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
 
           {/* Cart Items */}
           <div className="flex-1 overflow-y-auto p-5 space-y-4">
@@ -92,15 +134,27 @@ export const CartDrawer: React.FC = () => {
               <div className="divide-y divide-brass-600/20">
                 {cart.map((item) => (
                   <div key={`${item.productId}-${item.variantId || 'base'}`} className="py-3.5 flex gap-3.5">
-                    <img
-                      src={item.product.images[0]}
-                      alt={item.product.title}
-                      className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg border border-brass-600/30 shadow-xs"
-                    />
+                    <Link
+                      href={`/product/${item.product.slug}`}
+                      onClick={() => setIsCartOpen(false)}
+                      className="shrink-0"
+                    >
+                      <img
+                        src={item.product.images[0]}
+                        alt={item.product.title}
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg border border-brass-600/30 shadow-xs hover:border-copper-600 transition-colors"
+                      />
+                    </Link>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-serif text-xs sm:text-sm font-bold text-walnut-950 truncate">
-                        {language === 'hi' ? item.product.titleHi : item.product.title}
-                      </h4>
+                      <Link
+                        href={`/product/${item.product.slug}`}
+                        onClick={() => setIsCartOpen(false)}
+                        className="block"
+                      >
+                        <h4 className="font-serif text-xs sm:text-sm font-bold text-walnut-950 hover:text-copper-700 transition-colors truncate">
+                          {language === 'hi' ? item.product.titleHi : item.product.title}
+                        </h4>
+                      </Link>
                       <p className="text-[11px] text-brass-700 mt-0.5">
                         {item.selectedFinish} • {item.selectedCapacity || item.product.capacity}
                       </p>
