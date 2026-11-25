@@ -245,7 +245,7 @@ export const Navbar: React.FC = () => {
                 </button>
               </div>
 
-              {/* ZONE 2 (CENTRE): Tamtashilp Brand Logo (Cinzel, tracked caps, Centred & Fixed) */}
+              {/* ZONE 2 (CENTRE): Tamrashilp Brand Logo (Cinzel, tracked caps, Centred & Fixed) */}
               <div className="flex-1 lg:flex-initial text-center flex flex-col items-center justify-center">
                 <Link
                   href="/"

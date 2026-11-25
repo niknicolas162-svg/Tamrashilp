@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { PRODUCTS, CATEGORIES, BLOG_POSTS, ARTISANS } from '@/lib/mockData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://tamtashilp.in';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://tamrashilp.in';
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${baseUrl}`, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },

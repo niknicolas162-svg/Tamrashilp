@@ -15,7 +15,7 @@ export const AuthenticityModal: React.FC<AuthenticityModalProps> = ({ product, o
 
   useEffect(() => {
     if (product) {
-      const verificationUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://tamtashilp.in'}/authenticity?cert=${product.purityCertificationNo}&sku=${product.slug}`;
+      const verificationUrl = `${typeof window !== 'undefined' ? window.location.origin : 'https://tamrashilp.in'}/authenticity?cert=${product.purityCertificationNo}&sku=${product.slug}`;
       QRCode.toDataURL(verificationUrl, {
         width: 180,
         margin: 2,

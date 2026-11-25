@@ -8,6 +8,7 @@ import { useLanguage } from '@/lib/language-context';
 
 export default function CollectionsPage() {
   const { language } = useLanguage();
+  const [submittedInquiry, setSubmittedInquiry] = React.useState(false);
 
   return (
     <div className="bg-[#FAF4E8] text-[#2A1A12] min-h-screen font-body selection:bg-[#8C4E28] selection:text-[#FAF4E8]">
@@ -100,13 +101,24 @@ export default function CollectionsPage() {
             We partner with institutions, weddings, and patron organizations to craft bespoke monogrammed copperware with custom heraldic engravings and archival gift packaging.
           </p>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert('Thank you. Your corporate inquiry has been transmitted to our Almora desk.');
-            }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-serif"
-          >
+          {submittedInquiry ? (
+            <div className="p-6 rounded-2xl bg-[#EFE4CF] border border-[#4E6E58] text-[#12302B] space-y-2 text-center">
+              <CheckCircle2 className="w-6 h-6 text-[#4E6E58] mx-auto" />
+              <p className="font-serif text-sm font-semibold text-[#12302B]">
+                Inquiry Transmitted to Almora Desk
+              </p>
+              <p className="text-xs text-[#2A1A12]/80 font-body max-w-md mx-auto">
+                Dhanyawad. Our atelier curator will review your bespoke specifications and connect via WhatsApp/email within 24 hours.
+              </p>
+            </div>
+          ) : (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSubmittedInquiry(true);
+              }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-serif"
+            >
             <div className="space-y-1">
               <label className="text-[#2A1A12]/80 uppercase tracking-wider text-[10px]">Contact Person</label>
               <input
@@ -168,6 +180,7 @@ export default function CollectionsPage() {
               </button>
             </div>
           </form>
+          )}
         </section>
       </div>
     </div>

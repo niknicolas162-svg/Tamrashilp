@@ -423,7 +423,7 @@ export async function sendOrderWhatsAppAlert({
 
     const customerName = order.user?.name || 'Patron';
     const totalFormatted = `₹${order.totalAmount.toLocaleString('en-IN')}`;
-    const orderUrl = `https://tamtashilp.in/order/${order.orderNumber}`;
+    const orderUrl = `https://tamrashilp.in/order/${order.orderNumber}`;
 
     let templateName = 'order_confirmed';
     let params: string[] = [];
@@ -452,12 +452,12 @@ export async function sendOrderWhatsAppAlert({
 
       case 'delivered':
         templateName = 'delivered';
-        params = [customerName, order.orderNumber, `https://tamtashilp.in/order/${order.orderNumber}#review`];
+        params = [customerName, order.orderNumber, `https://tamrashilp.in/order/${order.orderNumber}#review`];
         break;
 
       case 'payment_failed':
         templateName = 'payment_failed';
-        params = [customerName, order.orderNumber, `https://tamtashilp.in/checkout?retry=${order.orderNumber}`];
+        params = [customerName, order.orderNumber, `https://tamrashilp.in/checkout?retry=${order.orderNumber}`];
         break;
     }
 

@@ -278,17 +278,17 @@ export default function OrderTrackingPage({ params }: { params: { orderId: strin
 
                 <div className="pt-3 border-t border-[#B8964F]/25 flex items-center justify-between text-xs">
                   {returnRequested ? (
-                    <span className="text-[10px] text-[#4E6E58] font-sans uppercase tracking-wider bg-[#E8EFEA] px-3 py-1 border border-[#4E6E58]/30">
-                      Guild Exchange Ticket Registered
-                    </span>
+                    <div className="bg-[#E8EFEA] px-3 py-2 border border-[#4E6E58]/30 space-y-0.5">
+                      <span className="text-[10px] text-[#4E6E58] font-sans uppercase tracking-wider font-semibold block">
+                        Guild Exchange Ticket Registered
+                      </span>
+                      <span className="text-[11px] text-[#12302B]/80 font-serif block">
+                        Our Almora artisan desk will contact you via WhatsApp (+91 95570 57767) to coordinate pickup.
+                      </span>
+                    </div>
                   ) : (
                     <button
-                      onClick={() => {
-                        setReturnRequested(true);
-                        alert(
-                          'Exchange Request Registered! Our Almora artisan desk will contact you to coordinate pickup.'
-                        );
-                      }}
+                      onClick={() => setReturnRequested(true)}
                       className="text-xs font-sans tracking-wider uppercase text-[#B26A3C] hover:text-[#12302B] font-medium transition-colors"
                     >
                       Request 15-Day Safe Exchange →

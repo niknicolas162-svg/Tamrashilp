@@ -58,6 +58,8 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
 
   // Pincode transit check
   const [pincodeInput, setPincodeInput] = useState('');
+  const [pincodeError, setPincodeError] = useState('');
+  const [copiedLink, setCopiedLink] = useState(false);
   const [pincodeResult, setPincodeResult] = useState<{
     city: string;
     state: string;
@@ -104,8 +106,10 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
     e.preventDefault();
     const pin = pincodeInput.trim();
     if (PINCODES[pin]) {
+      setPincodeError('');
       setPincodeResult({ ...PINCODES[pin], checked: true });
     } else if (pin.length === 6 && /^\d+$/.test(pin)) {
+      setPincodeError('');
       setPincodeResult({
         city: 'Verified Postal Hearth',
         state: 'India',
@@ -114,7 +118,8 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         checked: true,
       });
     } else {
-      alert('Please enter a valid 6-digit Indian Pincode.');
+      setPincodeResult(null);
+      setPincodeError('Please enter a valid 6-digit Indian Pincode.');
     }
   };
 
@@ -141,15 +146,16 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
   };
 
   const handleShare = () => {
-    if (navigator.share) {
+    if (typeof navigator !== 'undefined' && navigator.share) {
       navigator.share({
         title: product.title,
         text: `Handcrafted Almora copper utensil: ${product.title}`,
         url: window.location.href,
-      });
-    } else {
+      }).catch(() => {});
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
       navigator.clipboard.writeText(window.location.href);
-      alert('Archival link inscribed to clipboard.');
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
     }
   };
 
@@ -267,8 +273,13 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                   {product.finish} • NABL LAB ASSAYED
                 </span>
                 <div className="flex items-center space-x-2 text-brass-700">
-                  <button onClick={handleShare} className="p-1.5 hover:text-walnut-950" title="Share">
-                    <Share2 className="w-4 h-4" />
+                  <button onClick={handleShare} className="relative p-1.5 hover:text-walnut-950 transition-colors" title="Share Piece">
+                    {copiedLink ? <Check className="w-4 h-4 text-[#4E6E58]" /> : <Share2 className="w-4 h-4" />}
+                    {copiedLink && (
+                      <span className="absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-[#12302B] text-[#FAF4E8] text-[10px] font-sans whitespace-nowrap shadow-md">
+                        Link copied
+                      </span>
+                    )}
                   </button>
                   <button
                     onClick={() => toggleWishlist(product)}
@@ -448,13 +459,22 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                   maxLength={6}
                   placeholder={t('checkPincodePlaceholder')}
                   value={pincodeInput}
-                  onChange={(e) => setPincodeInput(e.target.value)}
+                  onChange={(e) => {
+                    setPincodeInput(e.target.value);
+                    if (pincodeError) setPincodeError('');
+                  }}
                   className="flex-1 bg-parchment-50 border border-brass-600/35 rounded-lg px-3 py-2 text-xs text-walnut-900 focus:outline-none focus:border-copper-600 font-serif"
                 />
                 <button type="submit" className="px-4 py-2 btn-atelier text-xs rounded-lg">
                   {t('checkPincodeButton')}
                 </button>
               </form>
+
+              {pincodeError && (
+                <p className="text-[11px] text-[#8C4E28] font-serif italic">
+                  {pincodeError}
+                </p>
+              )}
 
               {pincodeResult && (
                 <div className="bg-parchment-50 p-2.5 rounded-lg text-xs space-y-1 text-walnut-900 border border-brass-600/20 font-body">
@@ -481,7 +501,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                       type: 'product',
                       productName: product.title,
                       sku: `TS-${product.id.toUpperCase()}`,
-                      pageUrl: typeof window !== 'undefined' ? window.location.href : `https://tamtashilp.in/product/${product.slug}`,
+                      pageUrl: typeof window !== 'undefined' ? window.location.href : `https://tamrashilp.in/product/${product.slug}`,
                     })
                   )}
                   target="_blank"

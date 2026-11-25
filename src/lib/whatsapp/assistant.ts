@@ -160,8 +160,8 @@ export async function processIncomingMessage({
         });
 
         const statusReply = isHindi
-          ? `ऑर्डर विवरण (#${order.orderNumber}):\n• स्थिति: ${order.orderStatus}\n• कुल मूल्य: ₹${order.totalAmount.toLocaleString('en-IN')}\n• परिवहन: ${order.carrier}\n• ट्रैकिंग: ${order.trackingNumber || 'आवंटन प्रक्रिया में'}\n\nलाइव विवरण देखें: https://tamtashilp.in/order/${order.orderNumber}`
-          : `Order Status for #${order.orderNumber}:\n• Status: ${order.orderStatus}\n• Total Amount: ₹${order.totalAmount.toLocaleString('en-IN')}\n• Carrier: ${order.carrier}\n• Tracking AWB: ${order.trackingNumber || 'Pending AWB allocation'}\n\nTrack your order anytime: https://tamtashilp.in/order/${order.orderNumber}`;
+          ? `ऑर्डर विवरण (#${order.orderNumber}):\n• स्थिति: ${order.orderStatus}\n• कुल मूल्य: ₹${order.totalAmount.toLocaleString('en-IN')}\n• परिवहन: ${order.carrier}\n• ट्रैकिंग: ${order.trackingNumber || 'आवंटन प्रक्रिया में'}\n\nलाइव विवरण देखें: https://tamrashilp.in/order/${order.orderNumber}`
+          : `Order Status for #${order.orderNumber}:\n• Status: ${order.orderStatus}\n• Total Amount: ₹${order.totalAmount.toLocaleString('en-IN')}\n• Carrier: ${order.carrier}\n• Tracking AWB: ${order.trackingNumber || 'Pending AWB allocation'}\n\nTrack your order anytime: https://tamrashilp.in/order/${order.orderNumber}`;
 
         await sendWhatsAppMessage({ to: senderPhone, text: statusReply, conversationId: conversation.id });
         return;
@@ -186,8 +186,8 @@ export async function processIncomingMessage({
     lowerText.includes('सफाई')
   ) {
     const careReply = isHindi
-      ? `पारंपरिक ताम्र देखभाल एवं उषापान निर्देशिका:\n\n1. केवल सादा पानी: तांबे के पात्र में केवल सादा पानी रखें। खट्टे फल, दही, टमाटर अथवा सिरका कभी न रखें।\n2. प्राकृतिक सफाई: इमली या नींबू को मोटे नमक के साथ हल्के हाथ से मलें और तुरंत पोंछकर सुखा लें।\n3. प्राकृतिक चमक: तांबा समय के साथ गहरा होता है, जो इसकी शुद्धता का प्राकृतिक प्रमाण है।\n\nविस्तृत मार्गदर्शिका पढ़ें: https://tamtashilp.in/care`
-      : `Traditional Care & Ushapan Guidance:\n\n1. Plain Water Only: Store clean drinking water overnight at room temperature. Never store acidic fluids (citrus, curd, tomato, vinegar) in unlined copper.\n2. Natural Cleansing: Rub gently with tamarind pulp or lemon and coarse salt. Rinse and dry immediately.\n3. Living Patina: Darkening over time is a natural sign of virgin copper breathing.\n\nRead our full care guide: https://tamtashilp.in/care`;
+      ? `पारंपरिक ताम्र देखभाल एवं उषापान निर्देशिका:\n\n1. केवल सादा पानी: तांबे के पात्र में केवल सादा पानी रखें। खट्टे फल, दही, टमाटर अथवा सिरका कभी न रखें।\n2. प्राकृतिक सफाई: इमली या नींबू को मोटे नमक के साथ हल्के हाथ से मलें और तुरंत पोंछकर सुखा लें।\n3. प्राकृतिक चमक: तांबा समय के साथ गहरा होता है, जो इसकी शुद्धता का प्राकृतिक प्रमाण है।\n\nविस्तृत मार्गदर्शिका पढ़ें: https://tamrashilp.in/care`
+      : `Traditional Care & Ushapan Guidance:\n\n1. Plain Water Only: Store clean drinking water overnight at room temperature. Never store acidic fluids (citrus, curd, tomato, vinegar) in unlined copper.\n2. Natural Cleansing: Rub gently with tamarind pulp or lemon and coarse salt. Rinse and dry immediately.\n3. Living Patina: Darkening over time is a natural sign of virgin copper breathing.\n\nRead our full care guide: https://tamrashilp.in/care`;
 
     await sendWhatsAppMessage({ to: senderPhone, text: careReply, conversationId: conversation.id });
     return;
@@ -196,8 +196,8 @@ export async function processIncomingMessage({
   // 6. Custom Engraving (Option 3 or custom/engraving keywords)
   if (lowerText === '3' || lowerText.includes('custom') || lowerText.includes('engrav') || lowerText.includes('नक्काशी')) {
     const customReply = isHindi
-      ? `हस्तनिर्मित नक्काशी एवं अनुकूलन सेवा:\n\n• हमारे अल्मोड़ा शिल्पी छेनी और हथौड़े से नाम, कुलचिह्न अथवा वैदिक मंत्र उकेरते हैं।\n• शुल्क: ₹15 प्रति अक्षर।\n• रोमन सेरिफ एवं देवनागरी दोनों लिपियां उपलब्ध हैं।\n\nलाइव नक्काशी पूर्वावलोकन देखें: https://tamtashilp.in/custom-order`
-      : `Bespoke Inscription & Chasing Service:\n\n• Our Almora coppersmiths hand-chisel monograms, family crests, and mantras using steel burins on the horn anvil.\n• Rate: ₹15 per character.\n• Available in Roman Serif and Devanagari.\n\nTry live engraving preview: https://tamtashilp.in/custom-order`;
+      ? `हस्तनिर्मित नक्काशी एवं अनुकूलन सेवा:\n\n• हमारे अल्मोड़ा शिल्पी छेनी और हथौड़े से नाम, कुलचिह्न अथवा वैदिक मंत्र उकेरते हैं।\n• शुल्क: ₹15 प्रति अक्षर।\n• रोमन सेरिफ एवं देवनागरी दोनों लिपियां उपलब्ध हैं।\n\nलाइव नक्काशी पूर्वावलोकन देखें: https://tamrashilp.in/custom-order`
+      : `Bespoke Inscription & Chasing Service:\n\n• Our Almora coppersmiths hand-chisel monograms, family crests, and mantras using steel burins on the horn anvil.\n• Rate: ₹15 per character.\n• Available in Roman Serif and Devanagari.\n\nTry live engraving preview: https://tamrashilp.in/custom-order`;
 
     await sendWhatsAppMessage({ to: senderPhone, text: customReply, conversationId: conversation.id });
     return;
@@ -206,8 +206,8 @@ export async function processIncomingMessage({
   // 7. Returns & Kalai Re-tinning Service (Option 4 or kalai/tin/return)
   if (lowerText === '4' || lowerText.includes('kalai') || lowerText.includes('tin') || lowerText.includes('कलाई')) {
     const kalaiReply = isHindi
-      ? `पारंपरिक कलाई (टिनिंग) सेवा:\n\n• कुकिंग पात्रों में 99.9% शुद्ध खाद्य-ग्रेड रांगा (टिन) की कलाई की जाती है।\n• आप अपने बर्तनों को अल्मोड़ा कार्यशाला में पुनः कलाई हेतु भेज सकते हैं।\n• विनिमय सुरक्षा: 15 दिनों में पर्वत परिवहन क्षति सुरक्षा।\n\nकलाई सेवा बुक करें: https://tamtashilp.in/care`
-      : `Traditional Kalai (Pure Tinning) Service:\n\n• Culinary cookware is lined with 99.9% food-grade pure tin over charcoal embers.\n• Patrons can send seasoned cookware to our Almora workshop for periodic re-tinning (₹450–₹950 per vessel).\n• Trust promise: 15-day transit exchange guarantee.\n\nBook re-tinning service: https://tamtashilp.in/care`;
+      ? `पारंपरिक कलाई (टिनिंग) सेवा:\n\n• कुकिंग पात्रों में 99.9% शुद्ध खाद्य-ग्रेड रांगा (टिन) की कलाई की जाती है।\n• आप अपने बर्तनों को अल्मोड़ा कार्यशाला में पुनः कलाई हेतु भेज सकते हैं।\n• विनिमय सुरक्षा: 15 दिनों में पर्वत परिवहन क्षति सुरक्षा।\n\nकलाई सेवा बुक करें: https://tamrashilp.in/care`
+      : `Traditional Kalai (Pure Tinning) Service:\n\n• Culinary cookware is lined with 99.9% food-grade pure tin over charcoal embers.\n• Patrons can send seasoned cookware to our Almora workshop for periodic re-tinning (₹450–₹950 per vessel).\n• Trust promise: 15-day transit exchange guarantee.\n\nBook re-tinning service: https://tamrashilp.in/care`;
 
     await sendWhatsAppMessage({ to: senderPhone, text: kalaiReply, conversationId: conversation.id });
     return;

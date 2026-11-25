@@ -36,7 +36,7 @@ export const WhatsAppButton: React.FC = () => {
       type: 'product',
       productName: product?.title || 'Handcrafted Copper Vessel',
       sku: product?.id ? `TS-${product.id.toUpperCase()}` : slug,
-      pageUrl: currentUrl || `https://tamtashilp.in/product/${slug}`,
+      pageUrl: currentUrl || `https://tamrashilp.in/product/${slug}`,
     };
   } else if (pathname.startsWith('/order/')) {
     const orderId = pathname.replace('/order/', '').split('/')[0];

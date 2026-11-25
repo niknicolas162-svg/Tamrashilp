@@ -27,10 +27,10 @@ export async function POST(request: NextRequest) {
 
     // Attach product card or payment link if requested
     if (productSlug) {
-      messageToSend = `${messageToSend ? messageToSend + '\n\n' : ''}Craft Vessel Recommendation: https://tamtashilp.in/product/${productSlug}`;
+      messageToSend = `${messageToSend ? messageToSend + '\n\n' : ''}Craft Vessel Recommendation: https://tamrashilp.in/product/${productSlug}`;
     }
     if (orderId) {
-      messageToSend = `${messageToSend ? messageToSend + '\n\n' : ''}Order & Settlement Folio: https://tamtashilp.in/order/${orderId}`;
+      messageToSend = `${messageToSend ? messageToSend + '\n\n' : ''}Order & Settlement Folio: https://tamrashilp.in/order/${orderId}`;
     }
 
     const result = await sendWhatsAppMessage({

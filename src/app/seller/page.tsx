@@ -30,7 +30,7 @@ export default function SellerDashboardPage() {
 
   const [activeTab, setActiveTab] = useState<'PRODUCTS' | 'ORDERS' | 'PAYOUTS' | 'QUOTES'>('PRODUCTS');
   const [artisanProducts, setArtisanProducts] = useState<Product[]>(
-    PRODUCTS.filter((p) => p.artisanId === 'artisan-1' || p.artisanId === 'artisan-3')
+    PRODUCTS.filter((p) => p.artisanId === 'artisan-1')
   );
 
   // New Product Modal

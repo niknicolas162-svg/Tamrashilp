@@ -47,7 +47,7 @@ const DEMO_USERS: Record<UserRole, AuthUser> = {
   },
   ADMIN: {
     id: 'admin-1',
-    name: 'Curator Tamtashilp',
+    name: 'Curator Tamrashilp',
     email: 'curator@tamrashilp.in',
     role: 'ADMIN',
     avatarStyle: 'monogram',

@@ -66,7 +66,7 @@ export default function RootLayout({
     name: 'Tamrashilp',
     description: 'Heritage handcrafted copper utensils made by Almora coppersmith artisans of Uttarakhand',
     url: 'https://tamrashilp.in',
-    logo: 'https://tamtashilp.in/images/artisan-chasing-copper.jpg',
+    logo: 'https://tamrashilp.in/images/artisan-chasing-copper.jpg',
     priceRange: '₹1299 - ₹4899',
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, Credit Card, UPI, NetBanking',

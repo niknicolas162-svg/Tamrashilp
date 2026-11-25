@@ -12,7 +12,7 @@ export interface AvatarOption {
 }
 
 export const AVATAR_OPTIONS: AvatarOption[] = [
-  { id: 'monogram', label: 'Atelier Monogram', labelHi: 'शिल्प मोनोग्राम', description: 'Ancestral Tamtashilp seal' },
+  { id: 'monogram', label: 'Atelier Monogram', labelHi: 'शिल्प मोनोग्राम', description: 'Ancestral Tamrashilp seal' },
   { id: 'lota', label: 'Copper Lota', labelHi: 'ताम्र लोटा', description: 'Classical hand-raised water vessel' },
   { id: 'kalash', label: 'Sacred Kalash', labelHi: 'पवित्र कलश', description: 'Temple sanctum ceremonial vessel' },
   { id: 'hammer', label: 'Anvil Hammer', labelHi: 'निहाई हथौड़ा', description: 'Coppersmith shaping tool' },

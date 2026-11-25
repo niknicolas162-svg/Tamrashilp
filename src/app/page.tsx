@@ -16,6 +16,7 @@ import {
   Volume2,
   VolumeX,
   Maximize2,
+  Check,
 } from 'lucide-react';
 import { useLanguage } from '@/lib/language-context';
 import { TrustBadges } from '@/components/common/TrustBadges';
@@ -33,6 +34,7 @@ export default function HomePage() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [activeStepTab, setActiveStepTab] = useState(0);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [newsletterSuccess, setNewsletterSuccess] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -714,29 +716,41 @@ export default function HomePage() {
             {t('newsletterSubtitle')}
           </p>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert('Dhanyawad. You have been inscribed in the Tamta Archival Circle. Check your inbox for our welcoming heritage story.');
-            }}
-            className="space-y-3 max-w-md mx-auto pt-3 text-xs font-serif"
-          >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
-              <input
-                type="email"
-                required
-                placeholder={t('newsletterPlaceholder')}
-                className="w-full sm:flex-1 px-4 py-2.5 rounded-lg text-xs bg-patina-950 border border-brass-600/50 text-ivory placeholder:text-brass-500/60 focus:outline-none focus:border-brass-400 font-serif"
-              />
-              <button type="submit" className="w-full sm:w-auto px-6 py-2.5 rounded-lg btn-atelier text-xs">
-                {t('newsletterButton')}
-              </button>
+          {newsletterSuccess ? (
+            <div className="p-4 rounded-xl bg-patina-900/90 border border-brass-500/40 text-ivory max-w-md mx-auto space-y-1.5 animate-fadeIn">
+              <p className="font-serif text-sm text-brass-300 font-semibold flex items-center justify-center gap-1.5">
+                <Check className="w-4 h-4 text-sage-400" />
+                Inscribed in the Archival Circle
+              </p>
+              <p className="text-xs text-parchment-300 font-body">
+                Dhanyawad. Look into your inbox for our welcoming heritage dispatch from the Almora atelier.
+              </p>
             </div>
-            <p className="text-[11px] text-parchment-400 text-center font-light">
-              One care-and-heritage story each month. Strictly opt-in. You may{' '}
-              <span className="underline cursor-pointer hover:text-ivory">unsubscribe anytime</span>.
-            </p>
-          </form>
+          ) : (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setNewsletterSuccess(true);
+              }}
+              className="space-y-3 max-w-md mx-auto pt-3 text-xs font-serif"
+            >
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                <input
+                  type="email"
+                  required
+                  placeholder={t('newsletterPlaceholder')}
+                  className="w-full sm:flex-1 px-4 py-2.5 rounded-lg text-xs bg-patina-950 border border-brass-600/50 text-ivory placeholder:text-brass-500/60 focus:outline-none focus:border-brass-400 font-serif"
+                />
+                <button type="submit" className="w-full sm:w-auto px-6 py-2.5 rounded-lg btn-atelier text-xs">
+                  {t('newsletterButton')}
+                </button>
+              </div>
+              <p className="text-[11px] text-parchment-400 text-center font-light">
+                One care-and-heritage story each month. Strictly opt-in. You may{' '}
+                <span className="underline cursor-pointer hover:text-ivory">unsubscribe anytime</span>.
+              </p>
+            </form>
+          )}
         </div>
       </section>
 

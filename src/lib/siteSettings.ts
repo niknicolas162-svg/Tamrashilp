@@ -1,5 +1,5 @@
 /**
- * Tamtashilp Site Settings
+ * Tamrashilp Site Settings
  * Centralized, editable site configuration.
  * Allows the artisan name, lineage, announcement bar, and feature flags to be modified
  * without code changes or hard-coding.

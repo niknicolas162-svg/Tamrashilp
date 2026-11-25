@@ -2,11 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Hammer, Upload, ShieldCheck, CheckCircle2, ArrowRight, Award, Sparkles } from 'lucide-react';
+import { Hammer, Upload, ShieldCheck, CheckCircle2, ArrowRight, Award, Sparkles, Lock } from 'lucide-react';
 import { useLanguage } from '@/lib/language-context';
+import { getSiteSettings } from '@/lib/siteSettings';
 
 export default function SellerRegisterPage() {
   const { language } = useLanguage();
+  const settings = getSiteSettings();
   const [form, setForm] = useState({
     artisanName: '',
     workshopName: '',
@@ -22,6 +24,32 @@ export default function SellerRegisterPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+
+  if (!settings.enable_multi_seller) {
+    return (
+      <div className="bg-[#EFE4CF] min-h-screen text-[#2A1A12] py-16 sm:py-24">
+        <div className="max-w-2xl mx-auto px-4 text-center space-y-6">
+          <div className="w-14 h-14 rounded-full bg-[#12302B] text-[#B8964F] flex items-center justify-center mx-auto border border-[#B8964F]/50 shadow-md">
+            <Lock className="w-6 h-6" />
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl text-[#12302B]">
+            Sole Master Craftsman Atelier
+          </h1>
+          <p className="text-sm text-[#5C3E2C] font-serif leading-relaxed">
+            Tamrashilp is currently the dedicated solitary workshop of master coppersmith Devendra Kumar Tamta. External artisan enrollments are presently closed behind curatorial governance.
+          </p>
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href="/master-craftsman" className="btn-atelier px-6 py-2.5 text-xs uppercase tracking-wider">
+              The Master Craftsman Story
+            </Link>
+            <Link href="/shop" className="px-6 py-2.5 rounded-lg border border-[#B8964F]/60 text-xs text-[#12302B] hover:bg-[#FAF4E8] font-serif uppercase tracking-wider">
+              Explore Atelier Pieces
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
