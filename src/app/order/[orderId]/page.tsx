@@ -283,7 +283,7 @@ export default function OrderTrackingPage({ params }: { params: { orderId: strin
                         Guild Exchange Ticket Registered
                       </span>
                       <span className="text-[11px] text-[#12302B]/80 font-serif block">
-                        Our Almora artisan desk will contact you via WhatsApp (+91 95570 57767) to coordinate pickup.
+                        Our Almora artisan desk will contact you via WhatsApp (+91 95570 58767) to coordinate pickup.
                       </span>
                     </div>
                   ) : (

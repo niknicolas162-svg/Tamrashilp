@@ -302,7 +302,7 @@ export default function CarePage() {
           </div>
 
           <a
-            href="https://wa.me/919557057767?text=Hello%20Tamrashilp%20Artisan%20team,%20I%20have%20a%20question%20about%20cleaning%20and%20re-tinning%20my%20copper%20vessel."
+            href="https://wa.me/919557058767?text=Hello%20Tamrashilp%20Artisan%20team,%20I%20have%20a%20question%20about%20cleaning%20and%20re-tinning%20my%20copper%20vessel."
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-5 py-3 rounded-lg bg-[#4E6E58] text-[#FAF4E8] text-xs font-sans uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#3D5645] transition-colors shrink-0 shadow"

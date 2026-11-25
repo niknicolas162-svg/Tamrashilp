@@ -56,7 +56,7 @@ export default function ShippingReturnsPage() {
               2. 15-Day Safe Exchange Guarantee
             </h2>
             <p className="font-light">
-              Pure copper vessels are heavy and prized. Should transit deliver a damaged piece or defect, notify our artisan desk at tamrashilpstore@gmail.com or WhatsApp +91 95570 57767 within 15 days of arrival.
+              Pure copper vessels are heavy and prized. Should transit deliver a damaged piece or defect, notify our artisan desk at tamrashilpstore@gmail.com or WhatsApp +91 95570 58767 within 15 days of arrival.
             </p>
             <p className="font-light">
               We arrange immediate reverse pickup and commission a fresh replacement from the same workshop at zero cost.

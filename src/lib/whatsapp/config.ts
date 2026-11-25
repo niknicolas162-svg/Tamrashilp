@@ -14,7 +14,7 @@ export const getWhatsAppConfig = () => {
   const numberE164 =
     process.env.WHATSAPP_NUMBER_E164 ||
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ||
-    '+919557057767'; // Default business support number (Tamrashilp)
+    '+919557058767'; // Default business support number (Tamrashilp)
 
   const cleanDigits = numberE164.replace(/[^\d]/g, '');
 
@@ -40,7 +40,7 @@ export const getWhatsAppCleanNumber = (): string => {
 };
 
 /**
- * Formats E.164 number for polite human display, e.g. "+91 95570 57767"
+ * Formats E.164 number for polite human display, e.g. "+91 95570 58767"
  */
 export const formatDisplayNumber = (numberE164?: string): string => {
   const num = numberE164 || getWhatsAppConfig().numberE164;
@@ -52,7 +52,7 @@ export const formatDisplayNumber = (numberE164?: string): string => {
 
 /**
  * Masks customer phone number for admin logs and public display to uphold privacy
- * e.g., "+91 95570 57767" -> "+91 95*** **767"
+ * e.g., "+91 95570 58767" -> "+91 95*** **767"
  */
 export const maskPhoneNumber = (phone: string): string => {
   if (!phone) return '';

@@ -61,7 +61,7 @@ export default function TermsPage() {
                 <strong>Explicit Consent Record:</strong> Order notifications are dispatched only when a patron explicitly checks the consent checkbox at checkout or activates the toggle in their Profile. Consent timestamps and phone numbers are securely logged in our database.
               </li>
               <li>
-                <strong>Immediate Opt-Out (STOP):</strong> You may revoke consent at any moment by texting &ldquo;STOP&rdquo;, &ldquo;UNSUBSCRIBE&rdquo;, or &ldquo;CANCEL&rdquo; to our WhatsApp support number (+91 95570 57767), or by toggling off alerts in your Account Profile.
+                <strong>Immediate Opt-Out (STOP):</strong> You may revoke consent at any moment by texting &ldquo;STOP&rdquo;, &ldquo;UNSUBSCRIBE&rdquo;, or &ldquo;CANCEL&rdquo; to our WhatsApp support number (+91 95570 58767), or by toggling off alerts in your Account Profile.
               </li>
               <li>
                 <strong>Retention & Delete-My-Data Requests:</strong> Support transcripts are stored for a maximum of 180 days to fulfill warranty and repair obligations, after which they are purged. Patrons may exercise their right to erasure under the DPDP Act by emailing <a href="mailto:tamrashilpstore@gmail.com" className="text-[#8C4E28] underline">tamrashilpstore@gmail.com</a>; all chat logs will be erased within 72 hours.

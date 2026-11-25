@@ -196,11 +196,11 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="tel:+919557057767"
+                  href="tel:+919557058767"
                   className="flex items-center gap-1.5 text-parchment-300 hover:text-ivory transition-colors pt-0.5"
                 >
                   <Phone className="w-3.5 h-3.5 text-brass-400" />
-                  <span>+91 95570 57767</span>
+                  <span>+91 95570 58767</span>
                 </a>
               </li>
               <li>
